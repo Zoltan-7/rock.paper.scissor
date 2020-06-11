@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Rock Paper Scissor</title>
+        <meta charset="UTF-8"/>
+      </head>
+      <body>
+  <script>
+//JavaScript
+
+    let playerScore = 0;
+    let computerScore = 0;
+
+
+//allows computer move to generate a random result  
+ 
+function computerPlay() {
+    let moves = ['Rock', 'paper', 'scissor'];
+    let computersMove = [Math.floor(Math.random() * 3)];
+    return moves[computersMove];
+}
+
+
+//allows player or computer to either win, lose or tie
+
+function playRound1(playerSelection, computerSelection) {
+   var playerSelection = playerSelection.toLowerCase();
+    var computerSelection = computerSelection.toLowerCase();
+
+    if (playerSelection == 'rock' && computerSelection == 'paper' || playerSelection == 'paper' && computerSelection == 'scissor' || playerSelection == 'scissor' && computerSelection == 'rock') {
+        computerScore++;
+       return ('You lose! ' + (computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1)) + '...beets...Battlestar Galactica. Just kidding, but it does beat ' + (playerSelection) + '.' + '\n\nComputer chose: ' + (computerSelection) + '\nComputer points: ' + (computerScore) + '\nPlayer points: ' + (playerScore));   
+    }
+
+    if (playerSelection == 'rock' && computerSelection == 'scissor' || playerSelection == 'scissor' && computerSelection == 'paper' || playerSelection == 'paper' && computerSelection == 'rock') {
+        playerScore++;
+        return ('You win! ' + (playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1)) + ' beats ' + (computerSelection) + '\n\nComputer chose: ' + (computerSelection) + '\nComputer points: ' + (computerScore) + '\nPlayer points: ' + (playerScore));  
+    } 
+
+    if (playerSelection == 'rock' && computerSelection == 'rock' || playerSelection == 'scissor' && computerSelection == 'scissor' || playerSelection == 'paper' && computerSelection == 'paper'){
+        return ('It\'s a tie! \n\nComputer chose: ' + (computerSelection) + '\nNo points');
+    } else {
+        return ('Oops! Pick rock, paper or scissor');
+    }
+    
+} 
+
+/*game should loop for 5 plays, 
+display the respective return message from above, 
+points, return who won game*/
+
+function playGame() {
+    for ( i = 0; i < 5; i++) {
+        let playerSelection = prompt('Choose wisely, Grasshopper...\nRock, paper or scissor?');
+        const computerSelection = computerPlay();
+        alert(playRound1(playerSelection, computerSelection));
+    }
+    if (playerScore > computerScore) {
+        return('CONGRATS! You won the game!');
+    } 
+    if (playerScore < computerScore) {
+        return ('Darn! The computer won. Better luck next time!');
+    }  
+}
+
+playGame();
+
+
+</script>
+</body>
+</html>
